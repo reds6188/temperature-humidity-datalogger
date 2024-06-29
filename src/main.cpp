@@ -15,6 +15,7 @@ void setup() {
 	console.header("START INITIALIZATION", DOUBLE_DASHED, 80);
 	printDeviceInfo();
 	printResetReason();
+	setupCloud();
 	Btn1.onPress(softwareReset);
 	Btn2.onPress(printDeviceInfo);
 	console.header("END INITIALIZATION", DOUBLE_DASHED, 80);

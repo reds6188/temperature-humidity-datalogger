@@ -9,5 +9,6 @@
 #include <led.h>
 #include <tools.h>
 #include "def.h"
+#include "iot.h"
 
 #endif  /* MAIN_H_ */
