@@ -10,10 +10,12 @@ void onWiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info) {
 			//ntp_client.begin();
 			//initModbus();
 			console.success(WIFI_T, "EVENT - Wi-Fi connection was established with network \"" + wifi_handler.getSSID() + "\"");
+            startMqttClient();
             break;
         case ARDUINO_EVENT_WIFI_STA_DISCONNECTED:
 			reason = info.wifi_sta_disconnected.reason;
 			console.warning(WIFI_T, "EVENT - Wi-Fi was disconnected, reason code: " + String(reason) + " (" + String(WiFi.disconnectReasonName((wifi_err_reason_t)reason)) + ")");
+            stopMqttClient();
             break;
         case ARDUINO_EVENT_WIFI_STA_START:
 			console.success(WIFI_T, "EVENT - Wi-Fi ready, waiting for connection...");
@@ -33,6 +35,14 @@ void onWiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info) {
     }	
 }
 
+void mqtt_connection_callback(void)
+{
+}
+
+void mqtt_data_callback(char * topic, char * data, int data_length)
+{
+}
+
 void setupCloud(void) {
     wifi_handler.onEvent(onWiFiEvent, ARDUINO_EVENT_WIFI_STA_CONNECTED);
 	wifi_handler.onEvent(onWiFiEvent, ARDUINO_EVENT_WIFI_STA_DISCONNECTED);
@@ -43,7 +53,7 @@ void setupCloud(void) {
 	wifi_handler.begin(WIFI_STA);
 	wifi_handler.printMacAddress(WIFI_IF_STA);
 	wifi_handler.printMacAddress(WIFI_IF_AP);
-	//initMqttClient();
-	//onMqttConnect(mqtt_connection_callback);
-	//onMqttData(mqtt_data_callback);
+	initMqttClient();
+	onMqttConnect(mqtt_connection_callback);
+	onMqttData(mqtt_data_callback);
 }

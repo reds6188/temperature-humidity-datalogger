@@ -5,8 +5,8 @@
 #include <console.h>
 #include <timer.h>
 #include "SPIFFS.h"
-#include <ArduinoJson.h>
-#include <ESPRandom.h>
+//#include <ArduinoJson.h>
+//#include <ESPRandom.h>
 #include <fw-update.h>
 #include <tools.h>
 

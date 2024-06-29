@@ -101,7 +101,7 @@ void initMqttClient(void) {
 	console.success(MQTT_T, "Client created");
 
 	esp_mqtt_client_register_event(t5_mqtt_client, MQTT_EVENT_ANY, mqtt_event_handler, nullptr);
-	startMqttClient();
+	//startMqttClient();
 }
 
 void deinitMqttCLient(void) {
