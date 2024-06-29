@@ -1,0 +1,17 @@
+source,name,field,value,it
+metrics,s1_temperature,description,,Temperatura Sensore 1
+metrics,s1_temperature,label,,Temperatura S1
+metrics,s1_humidity,description,,Umidità Sensore 1
+metrics,s1_humidity,label,,Umidità S1
+metrics,s2_temperature,description,,Temperatura Sensore 2
+metrics,s2_temperature,label,,Temperatura S2
+metrics,s2_humidity,description,,Umidità Sensore 2
+metrics,s2_humidity,label,,Umidità S2
+metrics,s3_temperature,description,,Temperatura Sensore 3
+metrics,s3_temperature,label,,Temperatura S3
+metrics,s3_humidity,description,,Umidità Sensore 3
+metrics,s3_humidity,label,,Umidità S3
+metrics,s4_temperature,description,,Temperatura Sensore 4
+metrics,s4_temperature,label,,Temperatura S4
+metrics,s4_humidity,description,,Umidità Sensore 4
+metrics,s4_humidity,label,,Umidità S4

@@ -1,0 +1,9 @@
+name,type,unit,ui_unit,writable,min,max,category,source,severity,access_level
+s1_temperature,float,°C,,false,,,,metrics,,
+s1_humidity,float,%,,false,,,,metrics,,
+s2_temperature,float,°C,,false,,,,metrics,,
+s2_humidity,float,%,,false,,,,metrics,,
+s3_temperature,float,°C,,false,,,,metrics,,
+s3_humidity,float,%,,false,,,,metrics,,
+s4_temperature,float,°C,,false,,,,metrics,,
+s4_humidity,float,%,,false,,,,metrics,,
