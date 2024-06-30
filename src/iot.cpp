@@ -44,6 +44,9 @@ void mqtt_data_callback(char * topic, char * data, int data_length)
 }
 
 void setupCloud(void) {
+    initMqttClient();
+	onMqttConnect(mqtt_connection_callback);
+	onMqttData(mqtt_data_callback);
     wifi_handler.onEvent(onWiFiEvent, ARDUINO_EVENT_WIFI_STA_CONNECTED);
 	wifi_handler.onEvent(onWiFiEvent, ARDUINO_EVENT_WIFI_STA_DISCONNECTED);
 	wifi_handler.onEvent(onWiFiEvent, ARDUINO_EVENT_WIFI_STA_START);
@@ -53,7 +56,4 @@ void setupCloud(void) {
 	wifi_handler.begin(WIFI_STA);
 	wifi_handler.printMacAddress(WIFI_IF_STA);
 	wifi_handler.printMacAddress(WIFI_IF_AP);
-	initMqttClient();
-	onMqttConnect(mqtt_connection_callback);
-	onMqttData(mqtt_data_callback);
 }
