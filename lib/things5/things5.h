@@ -104,6 +104,7 @@ class Things5 {
 		String getPayload(void);
 		bool emptyMessage(void);
 		void createMessage(unsigned long long time_stamp);
+		void createMessage(void);
 		void deleteMessage(void);
 		void updateDatapointCounter(void);
 		void resetDatapointCounter(void);

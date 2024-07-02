@@ -447,6 +447,10 @@ void Things5::createMessage(unsigned long long time_stamp) {
     datapoint_counter.message = 0;
 }
 
+void Things5::createMessage(void) {
+    createMessage(timestamp);
+}
+
 void Things5::deleteMessage(void) {
     init_metrics = false;
     init_states = false;
