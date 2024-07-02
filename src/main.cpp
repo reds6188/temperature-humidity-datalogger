@@ -5,8 +5,13 @@ Led	Led2(LED_2, HS_DRIVER);		// LED2 - Lampeggia ad ogni comando ricevuto dal Di
 Led	Led3(LED_3, HS_DRIVER);		// LED3 - Lampeggia ad ogni comando ricevuto dall'LPC
 Button Btn1(BUTTON_1, 80);
 Button Btn2(BUTTON_2, 80);
+TempUmidSensor sensor;
 
 Timer TimerIdle;
+
+void sensor_callback(uint8_t *data, int size) {
+	sensor.setRxBuffer(data, size);
+}
 
 void setup() {
 	Led1.set();
@@ -16,6 +21,7 @@ void setup() {
 	printDeviceInfo();
 	printResetReason();
 	setupCloud();
+	sensor.begin(sensor_callback);
 	Btn1.onPress(softwareReset);
 	Btn2.onPress(printDeviceInfo);
 	console.header("END INITIALIZATION", DOUBLE_DASHED, 80);
@@ -27,6 +33,7 @@ void setup() {
 void loop() {
 	Btn1.loop();
 	Btn2.loop();
+	sensor.loop();
 
 	if(TimerIdle.elapsedX100ms(2)) {
 		TimerIdle.trigger();

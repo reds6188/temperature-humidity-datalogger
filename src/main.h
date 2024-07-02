@@ -10,5 +10,6 @@
 #include <tools.h>
 #include "def.h"
 #include "iot.h"
+#include "sensors.h"
 
 #endif  /* MAIN_H_ */

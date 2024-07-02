@@ -173,7 +173,7 @@ void Uart::printHexData(uint8_t *data, int data_size) {
 		output_str = "Failed to print packet: length exceeds maximum value";
 
 
-	console.log(UART_T, output_str);
+	console.log(uart_tag[uart_num], output_str);
 }
 
 void Uart::printRawData(uint8_t *data, int data_size) {
@@ -190,7 +190,7 @@ void Uart::printRawData(uint8_t *data, int data_size) {
 		output_str = "Failed to print packet: length exceeds maximum value";
 
 
-	console.log(UART_T, output_str);
+	console.log(uart_tag[uart_num], output_str);
 }
 
 String Uart::getRawString(uint8_t *data, int data_size) {
