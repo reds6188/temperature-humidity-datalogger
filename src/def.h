@@ -44,4 +44,6 @@
 #define UART_232_RX	5
 #define UART_232_EN	19
 
+#define TEST
+
 #endif  /* DEF_H_ */

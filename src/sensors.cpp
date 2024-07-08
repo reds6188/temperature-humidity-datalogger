@@ -20,6 +20,13 @@ uart_config_t UART_232_config = {
 };
 
 TempUmidSensor::TempUmidSensor(void) {
+	#ifdef TEST
+	sens_num = 4;
+	sens_list[0].address = 0xA0;
+	sens_list[1].address = 0xA1;
+	sens_list[2].address = 0xA2;
+	sens_list[3].address = 0xA3;
+	#endif
 }
 
 TempUmidSensor::~TempUmidSensor(void) {
@@ -64,6 +71,7 @@ void TempUmidSensor::parseRxBuffer(void) {
 				uint8_t index = getIndex(rxAddress);
 				setTemperature(index, *(rxData+3));
 				setHumidity(index, *(rxData+4));
+				console.log(SENS_T, "Temperature #" + String(index) + " = " + getTemperature(index) + "°C");
 				//Led2.toggle();
 			}
 			else
@@ -80,7 +88,7 @@ void TempUmidSensor::parseRxBuffer(void) {
 
 void TempUmidSensor::refresh(void) {
 	// Aggiorno la tastiera ogni 100 ms -------------------
-	if(TimerRefresh.elapsedX100ms(1))
+	if(TimerRefresh.elapsedX100ms(SENS_REFRESH_TIME))
 	{
 		TimerRefresh.trigger();
 		if(scanning) {
@@ -88,7 +96,13 @@ void TempUmidSensor::refresh(void) {
 		}
 		else {
 			next();
+			console.info(SENS_T, "Requesting sensor #" + String(sens_index));
+			#ifdef TEST
+			createSensPacket(rxData, sens_index);
+			receivedFlag = true;
+			#else
 			sendRequest(sens_list[sens_index].address);
+			#endif
 		}
 	}
 }
@@ -105,7 +119,7 @@ void TempUmidSensor::sendRequest(uint8_t address)
 
 void TempUmidSensor::next(void)
 {
-	if(sens_index < sens_num)
+	if(sens_index < (sens_num - 1))
 		sens_index++;
 	else
 		sens_index = 0;
@@ -134,6 +148,8 @@ sensor_t TempUmidSensor::getSensor(uint8_t address) {
 		if(address == sens_list[i].address)
 			return sens_list[i];
 	}
+
+	return {0, 0, 0};
 }
 
 uint8_t TempUmidSensor::getIndex(uint8_t address) {
@@ -141,6 +157,7 @@ uint8_t TempUmidSensor::getIndex(uint8_t address) {
 		if(address == sens_list[i].address)
 			return i;
 	}
+	return 0xFF;
 }
 
 void TempUmidSensor::setTemperature(uint8_t index, uint8_t value) {

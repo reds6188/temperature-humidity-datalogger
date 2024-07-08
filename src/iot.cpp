@@ -95,4 +95,5 @@ void setupCloud(void) {
 	wifi_handler.begin(WIFI_STA);
 	wifi_handler.printMacAddress(WIFI_IF_STA);
 	wifi_handler.printMacAddress(WIFI_IF_AP);
+	initVarT5();
 }

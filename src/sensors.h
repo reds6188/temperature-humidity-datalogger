@@ -7,11 +7,18 @@
 #include <protocol.h>
 #include <timer.h>
 #include "def.h"
+#include "test.h"
 
 #define SENS_T              "SENS"
 
 #define SENSORS_NUM_MAX     9
 #define SENSOR_BASE_ADDR    0xA0
+
+#ifdef TEST
+#define SENS_REFRESH_TIME   10   // x 100 ms
+#else
+#define SENS_REFRESH_TIME   1   // x 100 ms
+#endif
 
 typedef struct {
     uint8_t address;
