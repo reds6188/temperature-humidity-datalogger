@@ -33,17 +33,17 @@
 #define I2C_SCL		22
 
 // RS-232 (TTL) -----------------------
-#define UART_485	UART_NUM_2
-#define UART_485_TX	17
-#define UART_485_RX	16
-#define UART_485_EN	4
+#define UART_232	UART_NUM_2
+#define UART_232_TX	17
+#define UART_232_RX	16
+#define UART_232_EN	4
 
 // RS-485 -----------------------------
-#define UART_232	UART_NUM_1
-#define UART_232_TX	18
-#define UART_232_RX	5
-#define UART_232_EN	19
+#define UART_485	UART_NUM_1
+#define UART_485_TX	18
+#define UART_485_RX	5
+#define UART_485_EN	19
 
-#define TEST
+//#define TEST
 
 #endif  /* DEF_H_ */

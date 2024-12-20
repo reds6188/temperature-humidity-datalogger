@@ -6,6 +6,7 @@
 #include <serial.h>
 #include <protocol.h>
 #include <timer.h>
+#include <tools.h>
 #include "def.h"
 #include "test.h"
 
